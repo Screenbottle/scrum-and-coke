@@ -1,7 +1,6 @@
 {
   "name": "scrum-and-coke",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,14 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Screenbottle/scrum-and-coke.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Screenbottle/scrum-and-coke/issues"
+  },
+  "homepage": "https://github.com/Screenbottle/scrum-and-coke#readme",
+  "description": ""
 }
