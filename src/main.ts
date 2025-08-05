@@ -50,6 +50,8 @@ addStudentButton.addEventListener("click", () => {
     }
 
     students.push(student);
+    studentNameInput.value = "";
+    studentAgeInput.value = "";
 
     //TODO: Rerender the student list
 });
