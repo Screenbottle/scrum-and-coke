@@ -1,12 +1,6 @@
-const addStudentButton = document.getElementById(
-  "add-student"
-) as HTMLButtonElement;
-const studentNameInput = document.getElementById(
-  "student-name"
-) as HTMLInputElement;
-const studentAgeInput = document.getElementById(
-  "student-age"
-) as HTMLInputElement;
+const addStudentButton = document.getElementById('add-student') as HTMLButtonElement;
+const studentNameInput = document.getElementById('student-name') as HTMLInputElement;
+const studentAgeInput = document.getElementById('student-age') as HTMLInputElement;
 
 type Student = {
   id: number;
@@ -18,53 +12,53 @@ type Student = {
 let students: Student[] = [
   {
     id: 1,
-    name: "Lisa",
+    name: 'Lisa',
     age: 15,
     isActive: false,
   },
   {
     id: 2,
-    name: "Emil",
+    name: 'Emil',
     age: 16,
     isActive: true,
   },
   {
     id: 3,
-    name: "Grillbritt",
+    name: 'Grillbritt',
     age: 16,
     isActive: true,
   },
 ];
 
-addStudentButton.addEventListener("click", () => {
-    const studentName = studentNameInput.value.trim();
-    const studentAge = Number(studentAgeInput.value.trim());
+const studentList = document.getElementById('student-list') as HTMLUListElement;
 
-    const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
-
-    const student: Student = {
-        id: newId,
-        name: studentName,
-        age: studentAge,
-        isActive: true
-    }
-
-    students.push(student);
-    studentNameInput.value = "";
-    studentAgeInput.value = "";
-  //TODO: Rerender the student list
-});
- 
-
-
-const studentList = document.getElementById("student-list") as HTMLUListElement;
-studentList.innerHTML = ""; // Rensa listan
-
-students.forEach(student => {
-    const li = document.createElement("li");
+function renderAllStudents(): void {
+  studentList.innerHTML = ''; // Rensa listan
+  students.forEach((student) => {
+    const li = document.createElement('li');
     const age = student.age;
     li.textContent = `${student.name} (${age} år)`;
-    li.dataset.id = student.id.toString();  
+    li.dataset.id = student.id.toString();
     studentList.appendChild(li);
+  });
+}
+addStudentButton.addEventListener('click', () => {
+  const studentName = studentNameInput.value.trim();
+  const studentAge = Number(studentAgeInput.value.trim());
 
+  const newId = students.length > 0 ? Math.max(...students.map((s) => s.id)) + 1 : 1;
+
+  const student: Student = {
+    id: newId,
+    name: studentName,
+    age: studentAge,
+    isActive: true,
+  };
+
+  students.push(student);
+  studentNameInput.value = '';
+  studentAgeInput.value = '';
+  renderAllStudents();
 });
+
+renderAllStudents();
