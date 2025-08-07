@@ -1,12 +1,7 @@
-const addStudentButton = document.getElementById(
-  "add-student"
-) as HTMLButtonElement;
-const studentNameInput = document.getElementById(
-  "student-name"
-) as HTMLInputElement;
-const studentAgeInput = document.getElementById(
-  "student-age"
-) as HTMLInputElement;
+const addStudentButton = document.getElementById('add-student') as HTMLButtonElement;
+const studentNameInput = document.getElementById('student-name') as HTMLInputElement;
+const studentAgeInput = document.getElementById('student-age') as HTMLInputElement;
+const studentList = document.getElementById("student-list") as HTMLUListElement;
 
 type Student = {
   id: number;
@@ -18,49 +13,27 @@ type Student = {
 let students: Student[] = [
   {
     id: 1,
-    name: "Lisa",
+    name: 'Lisa',
     age: 15,
     isActive: false,
   },
   {
     id: 2,
-    name: "Emil",
+    name: 'Emil',
     age: 16,
     isActive: true,
   },
   {
     id: 3,
-    name: "Grillbritt",
+    name: 'Grillbritt',
     age: 16,
     isActive: true,
   },
 ];
 
-renderStudentList();
-
-addStudentButton.addEventListener("click", () => {
-  const studentName = studentNameInput.value.trim();
-  const studentAge = Number(studentAgeInput.value.trim());
-
-  const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
-
-  const student: Student = {
-    id: newId,
-    name: studentName,
-    age: studentAge,
-    isActive: true
-  }
-
-  students.push(student);
-  studentNameInput.value = "";
-  studentAgeInput.value = "";
-  renderStudentList();
-});
-
 function renderStudentList() {
-  const studentList = document.getElementById("student-list") as HTMLUListElement;
   studentList.innerHTML = ""; // Rensa listan
-
+  
   students.forEach(student => {
     const li = document.createElement("li");
     const age = student.age;
@@ -69,3 +42,24 @@ function renderStudentList() {
     studentList.appendChild(li);
   });
 }
+
+addStudentButton.addEventListener("click", () => {
+  const studentName = studentNameInput.value.trim();
+  const studentAge = Number(studentAgeInput.value.trim());
+  
+  const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
+  
+  const student: Student = {
+    id: newId,
+    name: studentName,
+    age: studentAge,
+    isActive: true
+  }
+  
+  students.push(student);
+  studentNameInput.value = "";
+  studentAgeInput.value = "";
+  renderStudentList();
+});
+
+renderStudentList();
