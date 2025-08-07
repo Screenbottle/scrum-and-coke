@@ -36,35 +36,36 @@ let students: Student[] = [
   },
 ];
 
+renderStudentList();
+
 addStudentButton.addEventListener("click", () => {
-    const studentName = studentNameInput.value.trim();
-    const studentAge = Number(studentAgeInput.value.trim());
+  const studentName = studentNameInput.value.trim();
+  const studentAge = Number(studentAgeInput.value.trim());
 
-    const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
+  const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
 
-    const student: Student = {
-        id: newId,
-        name: studentName,
-        age: studentAge,
-        isActive: true
-    }
+  const student: Student = {
+    id: newId,
+    name: studentName,
+    age: studentAge,
+    isActive: true
+  }
 
-    students.push(student);
-    studentNameInput.value = "";
-    studentAgeInput.value = "";
-  //TODO: Rerender the student list
+  students.push(student);
+  studentNameInput.value = "";
+  studentAgeInput.value = "";
+  renderStudentList();
 });
- 
 
+function renderStudentList() {
+  const studentList = document.getElementById("student-list") as HTMLUListElement;
+  studentList.innerHTML = ""; // Rensa listan
 
-const studentList = document.getElementById("student-list") as HTMLUListElement;
-studentList.innerHTML = ""; // Rensa listan
-
-students.forEach(student => {
+  students.forEach(student => {
     const li = document.createElement("li");
     const age = student.age;
     li.textContent = `${student.name} (${age} år)`;
-    li.dataset.id = student.id.toString();  
+    li.dataset.id = student.id.toString();
     studentList.appendChild(li);
-
-});
+  });
+}
