@@ -8,14 +8,14 @@ const studentAgeInput = document.getElementById(
   "student-age"
 ) as HTMLInputElement;
 
-type student = {
+type Student = {
   id: number;
   name: string;
   age: number;
   isActive: boolean;
 };
 
-let students: student[] = [
+let students: Student[] = [
   {
     id: 1,
     name: "Lisa",
@@ -52,6 +52,19 @@ addStudentButton.addEventListener("click", () => {
     students.push(student);
     studentNameInput.value = "";
     studentAgeInput.value = "";
+  //TODO: Rerender the student list
+});
+ 
 
-    //TODO: Rerender the student list
+
+const studentList = document.getElementById("student-list") as HTMLUListElement;
+studentList.innerHTML = ""; // Rensa listan
+
+students.forEach(student => {
+    const li = document.createElement("li");
+    const age = student.age;
+    li.textContent = `${student.name} (${age} år)`;
+    li.dataset.id = student.id.toString();  
+    studentList.appendChild(li);
+
 });
