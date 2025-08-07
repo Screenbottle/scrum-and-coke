@@ -42,7 +42,7 @@ addStudentButton.addEventListener("click", () => {
 
     const newId = students.length > 0 ? Math.max(...students.map(s => s.id)) + 1 : 1;
 
-    const student: student = {
+    const student: Student = {
         id: newId,
         name: studentName,
         age: studentAge,
